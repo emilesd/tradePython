@@ -1,0 +1,652 @@
+[
+  {
+    "conditions": [
+      {
+        "feature": "RSI at End of Minute",
+        "operator": ">",
+        "threshold": 22.470000000000002
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": "<=",
+        "threshold": 19.895000000000003
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": "<=",
+        "threshold": 19.660000000000004
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 15.860000000000001
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 16.225000000000005
+      }
+    ],
+    "prediction": -2.8353033552843112e-05,
+    "coverage": 0.5209003215434084,
+    "importance": 3.271451804719237,
+    "tree_id": 49
+  },
+  {
+    "conditions": [
+      {
+        "feature": "RSI at End of Minute",
+        "operator": "<=",
+        "threshold": 60.84000000000001
+      },
+      {
+        "feature": "SPY At End of Minute",
+        "operator": "<=",
+        "threshold": 674.0950000000001
+      },
+      {
+        "feature": "SPY At End of Minute",
+        "operator": "<=",
+        "threshold": 673.4700000000001
+      },
+      {
+        "feature": "RSI at End of Minute",
+        "operator": ">",
+        "threshold": 22.470000000000002
+      },
+      {
+        "feature": "SPY At End of Minute",
+        "operator": "<=",
+        "threshold": 664.4500000000002
+      }
+    ],
+    "prediction": -0.00166421629565096,
+    "coverage": 0.5080385852090032,
+    "importance": 3.223501755668192,
+    "tree_id": 27
+  },
+  {
+    "conditions": [
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": "<=",
+        "threshold": 19.895000000000003
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": "<=",
+        "threshold": 19.660000000000004
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": "<=",
+        "threshold": 19.565
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": "<=",
+        "threshold": 19.05
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": "<=",
+        "threshold": 18.115000000000006
+      }
+    ],
+    "prediction": -0.0003686701904945566,
+    "coverage": 0.4887459807073955,
+    "importance": 3.1140832721085894,
+    "tree_id": 31
+  },
+  {
+    "conditions": [
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 15.860000000000001
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 16.225000000000005
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 16.525000000000002
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 16.715000000000003
+      },
+      {
+        "feature": "RSI at End of Minute",
+        "operator": "<=",
+        "threshold": 55.18500000000001
+      }
+    ],
+    "prediction": -0.0016789984553333432,
+    "coverage": 0.4855305466237942,
+    "importance": 3.1111093843389708,
+    "tree_id": 36
+  },
+  {
+    "conditions": [
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 15.860000000000001
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 16.225000000000005
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 16.525000000000002
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 16.715000000000003
+      },
+      {
+        "feature": "RSI at End of Minute",
+        "operator": "<=",
+        "threshold": 55.18500000000001
+      }
+    ],
+    "prediction": -0.00151138380979379,
+    "coverage": 0.4855305466237942,
+    "importance": 3.1094332378835756,
+    "tree_id": 42
+  },
+  {
+    "conditions": [
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 15.635000000000002
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 16.525000000000002
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 16.715000000000003
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 17.275000000000002
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 18.710000000000004
+      }
+    ],
+    "prediction": -0.0013682775186995666,
+    "coverage": 0.48231511254019294,
+    "importance": 3.0919250045546267,
+    "tree_id": 29
+  },
+  {
+    "conditions": [
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 15.635000000000002
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 16.525000000000002
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 16.715000000000003
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 17.275000000000002
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 18.710000000000004
+      }
+    ],
+    "prediction": -0.0012416279002791272,
+    "coverage": 0.48231511254019294,
+    "importance": 3.090658508370422,
+    "tree_id": 33
+  },
+  {
+    "conditions": [
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 15.635000000000002
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 16.545000000000005
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 16.810000000000006
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 17.275000000000002
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 18.710000000000004
+      }
+    ],
+    "prediction": -0.00110737825363564,
+    "coverage": 0.48231511254019294,
+    "importance": 3.0893160119039873,
+    "tree_id": 37
+  },
+  {
+    "conditions": [
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 15.635000000000002
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 16.545000000000005
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 16.810000000000006
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 17.275000000000002
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 18.710000000000004
+      }
+    ],
+    "prediction": -0.0009691174167480009,
+    "coverage": 0.48231511254019294,
+    "importance": 3.087933403535111,
+    "tree_id": 43
+  },
+  {
+    "conditions": [
+      {
+        "feature": "RSI at End of Minute",
+        "operator": "<=",
+        "threshold": 60.84000000000001
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": "<=",
+        "threshold": 19.895000000000003
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": "<=",
+        "threshold": 19.660000000000004
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": "<=",
+        "threshold": 19.475000000000005
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": "<=",
+        "threshold": 18.710000000000004
+      }
+    ],
+    "prediction": 0.0005210682856006511,
+    "coverage": 0.4790996784565916,
+    "importance": 3.067375741805631,
+    "tree_id": 23
+  },
+  {
+    "conditions": [
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 15.860000000000001
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 16.225000000000005
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 16.545000000000005
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 17.295000000000005
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": "<=",
+        "threshold": 19.895000000000003
+      }
+    ],
+    "prediction": -0.001600398112420146,
+    "coverage": 0.4694533762057878,
+    "importance": 3.029937528819807,
+    "tree_id": 40
+  },
+  {
+    "conditions": [
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 15.860000000000001
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 16.225000000000005
+      },
+      {
+        "feature": "RSI at End of Minute",
+        "operator": "<=",
+        "threshold": 59.24500000000001
+      },
+      {
+        "feature": "RSI at End of Minute",
+        "operator": "<=",
+        "threshold": 42.65000000000001
+      },
+      {
+        "feature": "RSI at End of Minute",
+        "operator": "<=",
+        "threshold": 38.48000000000001
+      }
+    ],
+    "prediction": -0.0011465496359393,
+    "coverage": 0.40192926045016075,
+    "importance": 2.6877784652768635,
+    "tree_id": 44
+  },
+  {
+    "conditions": [
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 15.635000000000002
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 16.545000000000005
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 16.810000000000006
+      },
+      {
+        "feature": "RSI at End of Minute",
+        "operator": "<=",
+        "threshold": 55.18500000000001
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 18.115000000000006
+      }
+    ],
+    "prediction": 0.0005580189467012963,
+    "coverage": 0.36977491961414793,
+    "importance": 2.5211214542044194,
+    "tree_id": 39
+  },
+  {
+    "conditions": [
+      {
+        "feature": "RSI at End of Minute",
+        "operator": "<=",
+        "threshold": 60.84000000000001
+      },
+      {
+        "feature": "SPY At End of Minute",
+        "operator": "<=",
+        "threshold": 674.0950000000001
+      },
+      {
+        "feature": "SPY At End of Minute",
+        "operator": "<=",
+        "threshold": 664.4500000000002
+      },
+      {
+        "feature": "SPY At End of Minute",
+        "operator": "<=",
+        "threshold": 660.1750000000001
+      },
+      {
+        "feature": "SPY At End of Minute",
+        "operator": "<=",
+        "threshold": 658.6250000000001
+      }
+    ],
+    "prediction": -0.002523961825178819,
+    "coverage": 0.35691318327974275,
+    "importance": 2.4764722013171685,
+    "tree_id": 25
+  },
+  {
+    "conditions": [
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 15.915000000000001
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 16.545000000000005
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": ">",
+        "threshold": 17.295000000000005
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": "<=",
+        "threshold": 19.895000000000003
+      },
+      {
+        "feature": "RSI at End of Minute",
+        "operator": ">",
+        "threshold": 28.76
+      }
+    ],
+    "prediction": -0.0041757383874972305,
+    "coverage": 0.33762057877813506,
+    "importance": 2.3965269444323143,
+    "tree_id": 48
+  },
+  {
+    "conditions": [
+      {
+        "feature": "RSI at End of Minute",
+        "operator": "<=",
+        "threshold": 60.29500000000001
+      },
+      {
+        "feature": "SPY At End of Minute",
+        "operator": "<=",
+        "threshold": 674.0950000000001
+      },
+      {
+        "feature": "SPY At End of Minute",
+        "operator": "<=",
+        "threshold": 665.1550000000001
+      },
+      {
+        "feature": "RSI at End of Minute",
+        "operator": ">",
+        "threshold": 31.955000000000002
+      },
+      {
+        "feature": "SPY At End of Minute",
+        "operator": "<=",
+        "threshold": 658.6250000000001
+      }
+    ],
+    "prediction": -0.0025622290617320687,
+    "coverage": 0.3086816720257235,
+    "importance": 2.2356973174126047,
+    "tree_id": 32
+  },
+  {
+    "conditions": [
+      {
+        "feature": "RSI at End of Minute",
+        "operator": ">",
+        "threshold": 31.955000000000002
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": "<=",
+        "threshold": 19.565
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": "<=",
+        "threshold": 18.710000000000004
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": "<=",
+        "threshold": 17.275000000000002
+      },
+      {
+        "feature": "CallDex At End of Minute",
+        "operator": "<=",
+        "threshold": 16.810000000000006
+      }
+    ],
+    "prediction": 0.0015054747001461996,
+    "coverage": 0.3086816720257235,
+    "importance": 2.225129773796746,
+    "tree_id": 22
+  },
+  {
+    "conditions": [
+      {
+        "feature": "SPY At End of Minute",
+        "operator": ">",
+        "threshold": 657.1700000000002
+      },
+      {
+        "feature": "SPY At End of Minute",
+        "operator": ">",
+        "threshold": 658.6250000000001
+      },
+      {
+        "feature": "SPY At End of Minute",
+        "operator": ">",
+        "threshold": 659.5600000000001
+      },
+      {
+        "feature": "SPY At End of Minute",
+        "operator": ">",
+        "threshold": 664.4500000000002
+      },
+      {
+        "feature": "SPY At End of Minute",
+        "operator": ">",
+        "threshold": 672.1550000000001
+      }
+    ],
+    "prediction": -0.001153194651028121,
+    "coverage": 0.29260450160771706,
+    "importance": 2.141221121215533,
+    "tree_id": 34
+  },
+  {
+    "conditions": [
+      {
+        "feature": "RSI at End of Minute",
+        "operator": ">",
+        "threshold": 33.815000000000005
+      },
+      {
+        "feature": "SPY At End of Minute",
+        "operator": "<=",
+        "threshold": 673.3900000000001
+      },
+      {
+        "feature": "SPY At End of Minute",
+        "operator": "<=",
+        "threshold": 661.2850000000002
+      },
+      {
+        "feature": "SPY At End of Minute",
+        "operator": "<=",
+        "threshold": 659.5600000000001
+      },
+      {
+        "feature": "SPY At End of Minute",
+        "operator": "<=",
+        "threshold": 658.6250000000001
+      }
+    ],
+    "prediction": -0.0005838340209735618,
+    "coverage": 0.29260450160771706,
+    "importance": 2.1355275149149877,
+    "tree_id": 26
+  },
+  {
+    "conditions": [
+      {
+        "feature": "RSI at End of Minute",
+        "operator": "<=",
+        "threshold": 39.20000000000001
+      },
+      {
+        "feature": "RSI at End of Minute",
+        "operator": ">",
+        "threshold": 29.400000000000002
+      },
+      {
+        "feature": "RSI at End of Minute",
+        "operator": "<=",
+        "threshold": 33.815000000000005
+      }
+    ],
+    "prediction": -0.10052840281856854,
+    "coverage": 0.06752411575562701,
+    "importance": 2.1121353761945896,
+    "tree_id": 0
+  }
+]

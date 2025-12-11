@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LightGBM Trading Tool - No-Code Signal Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .step {
+            margin-bottom: 30px;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 15px;
+        }
+        
+        .step-title {
+            font-size: 1.5em;
+            color: #333;
+        }
+        
+        .upload-area {
+            border: 3px dashed #667eea;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .upload-area:hover {
+            background: #f8f9ff;
+            border-color: #764ba2;
+        }
+        
+        .upload-area.drag-over {
+            background: #f8f9ff;
+            border-color: #764ba2;
+        }
+        
+        .upload-icon {
+            font-size: 3em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            box-shadow: 0 4px 15px rgba(108, 117, 125, 0.4);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .checkbox-item input {
+            margin-right: 8px;
+            cursor: pointer;
+        }
+        
+        .results {
+            display: none;
+        }
+        
+        .results.show {
+            display: block;
+        }
+        
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .metric-card {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .metric-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+        
+        .metric-value {
+            color: #667eea;
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+        
+        .signal-card {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .signal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .signal-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .signal-badge {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        
+        .signal-long {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .signal-short {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .signal-condition {
+            color: #666;
+            margin-bottom: 10px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .signal-stats {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .loading.show {
+            display: block;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border-left: 5px solid #28a745;
+        }
+        
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 5px solid #dc3545;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .download-section {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .download-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background: #f8f9ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 LightGBM Trading Tool</h1>
+            <p>Extract Actionable Trading Signals from Your Data - No Coding Required</p>
+        </div>
+
+        <!-- Step 1: Upload File -->
+        <div class="card" id="step1">
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <h2 class="step-title">Upload Your Excel File</h2>
+                </div>
+                
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📁</div>
+                    <h3>Drag & Drop your Excel file here</h3>
+                    <p>or click to browse</p>
+                    <p style="margin-top: 10px; color: #666; font-size: 0.9em;">Supported: .xlsx, .xls, .csv (Max 16MB)</p>
+                    <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" style="display: none;">
+                </div>
+                
+                <div id="fileInfo" class="hidden" style="margin-top: 15px; padding: 15px; background: #f8f9ff; border-radius: 8px;">
+                    <strong>📊 File loaded:</strong> <span id="fileName"></span>
+                    <div style="margin-top: 10px;">
+                        <strong>Rows:</strong> <span id="fileRows"></span> | 
+                        <strong>Columns:</strong> <span id="fileColumns"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Configure Model -->
+        <div class="card hidden" id="step2">
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <h2 class="step-title">Configure Your Model</h2>
+                </div>
+
+                <div class="form-group">
+                    <label>Select Feature Columns (Indicators)</label>
+                    <div class="checkbox-group" id="featureCheckboxes"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="targetColumn">Select Target Column (What to Predict)</label>
+                    <select id="targetColumn" class="form-control">
+                        <option value="">-- Select Target --</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="taskType">Task Type</label>
+                    <select id="taskType" class="form-control">
+                        <option value="regression">Regression (Predict Profit Amount)</option>
+                        <option value="classification">Classification (Predict Long/Short)</option>
+                    </select>
+                </div>
+
+                <details style="margin-top: 20px;">
+                    <summary style="cursor: pointer; font-weight: 600; margin-bottom: 15px;">⚙️ Advanced Settings (Optional)</summary>
+                    
+                    <div class="form-group">
+                        <label for="nEstimators">Number of Trees (50-200)</label>
+                        <input type="number" id="nEstimators" class="form-control" value="100" min="50" max="200">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="learningRate">Learning Rate (0.01-0.3)</label>
+                        <input type="number" id="learningRate" class="form-control" value="0.05" min="0.01" max="0.3" step="0.01">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="maxDepth">Max Depth (3-10)</label>
+                        <input type="number" id="maxDepth" class="form-control" value="5" min="3" max="10">
+                    </div>
+                </details>
+
+                <div style="margin-top: 20px; text-align: center;">
+                    <button class="btn" id="trainButton">🎯 Train Model & Extract Signals</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div class="card loading" id="loading">
+            <div class="spinner"></div>
+            <h3>Training LightGBM Model...</h3>
+            <p>This usually takes 5-10 seconds</p>
+        </div>
+
+        <!-- Step 3: View Results -->
+        <div class="card results" id="step3">
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <h2 class="step-title">Your Trading Signals</h2>
+                </div>
+
+                <div id="alertContainer"></div>
+
+                <h3 style="margin-top: 20px; margin-bottom: 15px;">📊 Feature Importance</h3>
+                <div class="metric-grid" id="featureImportance"></div>
+
+                <h3 style="margin-top: 30px; margin-bottom: 15px;">🎯 Actionable Trading Signals</h3>
+                <div id="tradingSignals"></div>
+
+                <h3 style="margin-top: 30px; margin-bottom: 15px;">📈 Model Performance</h3>
+                <div class="metric-grid" id="modelPerformance"></div>
+
+                <div class="download-section" style="margin-top: 30px;">
+                    <h3>💾 Download Results</h3>
+                    <div class="download-buttons">
+                        <button class="btn" onclick="downloadFile('importance')">📊 Feature Importance</button>
+                        <button class="btn" onclick="downloadFile('signals')">🎯 Trading Signals</button>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="btn btn-secondary" onclick="location.reload()">🔄 Start Over</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let uploadedData = null;
+
+        // Upload area drag & drop
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+
+        uploadArea.addEventListener('click', () => fileInput.click());
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('drag-over');
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('drag-over');
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('drag-over');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFile(e.target.files[0]);
+            }
+        });
+
+        function handleFile(file) {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert('Error: ' + data.error);
+                    return;
+                }
+
+                uploadedData = data;
+                
+                // Show file info
+                document.getElementById('fileName').textContent = data.filename;
+                document.getElementById('fileRows').textContent = data.rows;
+                document.getElementById('fileColumns').textContent = data.columns;
+                document.getElementById('fileInfo').classList.remove('hidden');
+
+                // Populate feature checkboxes
+                const featureContainer = document.getElementById('featureCheckboxes');
+                featureContainer.innerHTML = '';
+                data.recommended_features.forEach(feature => {
+                    const div = document.createElement('div');
+                    div.className = 'checkbox-item';
+                    div.innerHTML = `
+                        <input type="checkbox" id="feat_${feature}" value="${feature}" checked>
+                        <label for="feat_${feature}">${feature}</label>
+                    `;
+                    featureContainer.appendChild(div);
+                });
+
+                // Populate target dropdown
+                const targetSelect = document.getElementById('targetColumn');
+                targetSelect.innerHTML = '<option value="">-- Select Target --</option>';
+                data.recommended_targets.forEach(target => {
+                    const option = document.createElement('option');
+                    option.value = target;
+                    option.textContent = target;
+                    option.selected = true; // Select first one by default
+                    targetSelect.appendChild(option);
+                });
+
+                // Show step 2
+                document.getElementById('step2').classList.remove('hidden');
+            })
+            .catch(error => {
+                alert('Error uploading file: ' + error);
+            });
+        }
+
+        // Train model
+        document.getElementById('trainButton').addEventListener('click', () => {
+            // Get selected features
+            const features = [];
+            document.querySelectorAll('#featureCheckboxes input:checked').forEach(cb => {
+                features.push(cb.value);
+            });
+
+            const target = document.getElementById('targetColumn').value;
+            const taskType = document.getElementById('taskType').value;
+
+            if (features.length === 0) {
+                alert('Please select at least one feature');
+                return;
+            }
+
+            if (!target) {
+                alert('Please select a target column');
+                return;
+            }
+
+            // Get hyperparameters
+            const params = {
+                features: features,
+                target: target,
+                task_type: taskType,
+                n_estimators: parseInt(document.getElementById('nEstimators').value),
+                learning_rate: parseFloat(document.getElementById('learningRate').value),
+                max_depth: parseInt(document.getElementById('maxDepth').value)
+            };
+
+            // Show loading
+            document.getElementById('loading').classList.add('show');
+            document.getElementById('step2').style.display = 'none';
+
+            // Train model
+            fetch('/train', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(params)
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('loading').classList.remove('show');
+                
+                if (data.error) {
+                    alert('Error: ' + data.error);
+                    document.getElementById('step2').style.display = 'block';
+                    return;
+                }
+
+                displayResults(data);
+            })
+            .catch(error => {
+                document.getElementById('loading').classList.remove('show');
+                alert('Error training model: ' + error);
+                document.getElementById('step2').style.display = 'block';
+            });
+        });
+
+        function displayResults(data) {
+            // Show success alert
+            const alertContainer = document.getElementById('alertContainer');
+            alertContainer.innerHTML = `
+                <div class="alert alert-success">
+                    ✅ Model trained successfully! Found ${data.trading_signals.length} actionable trading signals.
+                </div>
+            `;
+
+            // Display feature importance
+            const featureContainer = document.getElementById('featureImportance');
+            featureContainer.innerHTML = '';
+            data.feature_importance.slice(0, 5).forEach(feature => {
+                const card = document.createElement('div');
+                card.className = 'metric-card';
+                card.innerHTML = `
+                    <div class="metric-label">${feature.feature}</div>
+                    <div class="metric-value">${feature.importance_pct.toFixed(1)}%</div>
+                `;
+                featureContainer.appendChild(card);
+            });
+
+            // Display trading signals
+            const signalsContainer = document.getElementById('tradingSignals');
+            signalsContainer.innerHTML = '';
+            data.trading_signals.forEach(signal => {
+                const signalClass = signal.Signal.includes('LONG') ? 'signal-long' : 'signal-short';
+                const card = document.createElement('div');
+                card.className = 'signal-card';
+                card.innerHTML = `
+                    <div class="signal-header">
+                        <div class="signal-title">Signal #${signal.rule_number}</div>
+                        <div class="signal-badge ${signalClass}">${signal.Signal}</div>
+                    </div>
+                    <div class="signal-condition">${signal.Condition}</div>
+                    <div class="signal-stats">
+                        <span>📊 Coverage: ${signal.Coverage_%}%</span>
+                        <span>💰 Expected: ${signal.Expected_Profit >= 0 ? '+' : ''}${signal.Expected_Profit.toFixed(4)}</span>
+                        <span>⭐ Confidence: ${signal.Confidence}</span>
+                    </div>
+                `;
+                signalsContainer.appendChild(card);
+            });
+
+            // Display model performance
+            const perfContainer = document.getElementById('modelPerformance');
+            const metrics = data.model_performance.test_metrics;
+            perfContainer.innerHTML = '';
+            
+            if (data.model_performance.task_type === 'regression') {
+                perfContainer.innerHTML = `
+                    <div class="metric-card">
+                        <div class="metric-label">RMSE (Test)</div>
+                        <div class="metric-value">${metrics.rmse.toFixed(4)}</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">MAE (Test)</div>
+                        <div class="metric-value">${metrics.mae.toFixed(4)}</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">R² Score</div>
+                        <div class="metric-value">${metrics.r2.toFixed(3)}</div>
+                    </div>
+                `;
+            } else {
+                perfContainer.innerHTML = `
+                    <div class="metric-card">
+                        <div class="metric-label">Accuracy (Test)</div>
+                        <div class="metric-value">${(metrics.accuracy * 100).toFixed(1)}%</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Training Samples</div>
+                        <div class="metric-value">${data.data_stats.training_samples}</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Test Samples</div>
+                        <div class="metric-value">${data.data_stats.test_samples}</div>
+                    </div>
+                `;
+            }
+
+            // Show results
+            document.getElementById('step3').classList.add('show');
+        }
+
+        function downloadFile(type) {
+            window.location.href = `/download/${type}`;
+        }
+    </script>
+</body>
+</html>
+
