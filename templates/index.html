@@ -648,6 +648,9 @@
             signalsContainer.innerHTML = '';
             data.trading_signals.forEach(signal => {
                 const signalClass = signal.Signal.includes('LONG') ? 'signal-long' : 'signal-short';
+                const coverage = signal['Coverage_%'];
+                const expectedProfit = signal.Expected_Profit;
+                const confidence = signal.Confidence;
                 const card = document.createElement('div');
                 card.className = 'signal-card';
                 card.innerHTML = `
@@ -657,9 +660,9 @@
                     </div>
                     <div class="signal-condition">${signal.Condition}</div>
                     <div class="signal-stats">
-                        <span>📊 Coverage: ${signal.Coverage_%}%</span>
-                        <span>💰 Expected: ${signal.Expected_Profit >= 0 ? '+' : ''}${signal.Expected_Profit.toFixed(4)}</span>
-                        <span>⭐ Confidence: ${signal.Confidence}</span>
+                        <span>📊 Coverage: ${coverage}%</span>
+                        <span>💰 Expected: ${expectedProfit >= 0 ? '+' : ''}${expectedProfit.toFixed(4)}</span>
+                        <span>⭐ Confidence: ${confidence}</span>
                     </div>
                 `;
                 signalsContainer.appendChild(card);

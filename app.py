@@ -20,6 +20,7 @@ app.secret_key = 'lightgbm_trading_tool_secret_key_2025'
 app.config['UPLOAD_FOLDER'] = 'uploads'
 app.config['OUTPUT_FOLDER'] = 'outputs'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
+app.config['TEMPLATES_AUTO_RELOAD'] = True  # Auto-reload templates (no caching)
 
 # Create necessary directories
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
@@ -200,8 +201,16 @@ def train_model():
     
     except Exception as e:
         import traceback
-        print(traceback.format_exc())
-        return jsonify({'error': str(e)}), 500
+        error_trace = traceback.format_exc()
+        print("="*80)
+        print("ERROR IN /train ENDPOINT:")
+        print("="*80)
+        print(error_trace)
+        print("="*80)
+        return jsonify({
+            'error': str(e),
+            'details': error_trace.split('\n')[-3:-1]  # Last 2 lines of error
+        }), 500
 
 
 @app.route('/download/<file_type>')
@@ -228,6 +237,30 @@ def download_file(file_type):
 def health():
     """Health check endpoint"""
     return jsonify({'status': 'healthy', 'message': 'LightGBM Trading Tool API is running'})
+
+
+@app.route('/favicon.ico')
+def favicon():
+    """Serve favicon to prevent 404 errors"""
+    return send_file('templates/favicon.svg', mimetype='image/svg+xml')
+
+
+@app.errorhandler(Exception)
+def handle_error(error):
+    """Global error handler to ensure JSON responses"""
+    import traceback
+    error_trace = traceback.format_exc()
+    print("="*80)
+    print("UNHANDLED ERROR:")
+    print("="*80)
+    print(error_trace)
+    print("="*80)
+    
+    # Return JSON error instead of HTML
+    return jsonify({
+        'error': str(error),
+        'type': error.__class__.__name__
+    }), 500
 
 
 if __name__ == '__main__':
